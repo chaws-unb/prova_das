@@ -61,5 +61,37 @@ public class AvaliarExpressao {
 		}
 		
 	}
+
+	public double calcularExpressao(String postfixo) {
+		Stack<Double> resultado = new Stack();
+		String[] tokens = postfixo.split(" ");
+		for(int i = 0; i < tokens.length; i++){
+			if (!"+-/*".contains(tokens[i])){
+				resultado.push(Double.parseDouble(tokens[i]));
+			}
+			else {
+				double numero1, numero2, result;
+				numero1 = resultado.pop();
+				numero2 = resultado.pop();
+				if (tokens[i].equals("+")){
+					result = numero1 + numero2;
+					resultado.push(result);
+				}
+				else if (tokens[i].equals("-")){
+					result = numero1 - numero2;
+					resultado.push(result);
+				}
+				else if (tokens[i].equals("*")){
+					result = numero1 * numero2;
+					resultado.push(result);
+				}
+				else if (tokens[i].equals("/")){
+					result = numero1 / numero2;
+					resultado.push(result);
+				}
+			}
+		}
+		return resultado.pop();
+	}
 	
 }

@@ -6,9 +6,9 @@ import org.junit.Test;
 public class TestAvaliarExpressao {
 
 	@Test
-	public void testArmazenarMaisDeUmToken() throws IllegalArgumentException {
-		String entrada = "3 + 2 * 1 / 0 ( ) -";
-		AvaliarExpressao expressao1 = new AvaliarExpressao(entrada);
+	public void testArmazenarMaisDeUmCaractere() throws IllegalArgumentException {
+		String infixo = "3 + 2 * 1 / 0 ( ) -";
+		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
 		
 		assertEquals("-", expressao1.pop());
 		assertEquals(")", expressao1.pop());
@@ -33,6 +33,15 @@ public class TestAvaliarExpressao {
 	public void testValidarExpressao() throws IllegalArgumentException{
 		String infixo = "( 2 + 2 ) / ( 1 + 1 ) l";
 		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
+	}
+	
+	@Test
+	public void testVerificarResultado(){
+		String infixo = "( 2 + 2 ) / ( 1 + 1 )";
+		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
+		String postfixo = expressao1.converterPostFix();
+		assertEquals(2.0, expressao1.calcularExpressao(postfixo), 0.1);
+		
 	}
 
 }
