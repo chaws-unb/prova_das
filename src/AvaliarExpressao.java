@@ -32,14 +32,25 @@ public class AvaliarExpressao {
 		
 		for(int i = 0; i < pilha.size(); i++){
 			charAtual = pilha.get(i);
-			if('0' <= charAtual && charAtual <= '9')
+			if('0' <= charAtual && charAtual <= '9'){
 				postfixo += String.valueOf(charAtual) + " ";
-			else
+			}
+			else if (charAtual == '('){
 				temporaria.push(charAtual);
+			}
+			else if (charAtual == ')'){
+				postfixo += temporaria.pop() + " ";
+			}
+			else {
+				temporaria.push(charAtual);
+			}
+			if (pilha.size()-1 == i){
+				postfixo += temporaria.pop() + " ";
+			}
 			
 		}
 		
-		return "2 2 + 1 1 + /";
+		return postfixo;
 	}
 	
 }

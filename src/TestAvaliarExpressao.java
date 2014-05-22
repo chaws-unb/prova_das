@@ -24,7 +24,7 @@ public class TestAvaliarExpressao {
 	
 	@Test
 	public void testConversaoPostfix(){
-		String infixo = "( 2 + 2 ) / ( 1 + 1)";
+		String infixo = "( 2 + 2 ) / ( 1 + 1 )";
 		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
 		assertEquals("2 2 + 1 1 + /", expressao1.converterPostFix());
 	}
