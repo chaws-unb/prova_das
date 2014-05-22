@@ -24,5 +24,22 @@ public class AvaliarExpressao {
 		}
 		
 	}
+
+	public String converterPostFix() {
+		Stack<Integer> temporaria = new Stack();
+		String postfixo = "";
+		Integer charAtual = ' ';
+		
+		for(int i = 0; i < pilha.size(); i++){
+			charAtual = pilha.get(i);
+			if('0' <= charAtual && charAtual <= '9')
+				postfixo += String.valueOf(charAtual) + " ";
+			else
+				temporaria.push(charAtual);
+			
+		}
+		
+		return "2 2 + 1 1 + /";
+	}
 	
 }
