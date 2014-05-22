@@ -37,7 +37,7 @@ public class TestAvaliarExpressao {
 	
 	
 	@Test
-	public void testVerificarResultado(){
+	public void testVerificarResultado() throws IllegalArgumentException{
 		String infixo = "( 2 + 2 ) / ( 1 + 1 )";
 		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
 		String postfixo = expressao1.converterPostFix();

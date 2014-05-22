@@ -64,10 +64,13 @@ public class AvaliarExpressao {
 		
 	}
 
-	public double calcularExpressao(String postfixo) throws ArithmeticException {
+	public double calcularExpressao(String postfixo) throws ArithmeticException, IllegalArgumentException {
 		Stack<Double> resultado = new Stack();
 		String[] tokens = postfixo.split(" ");
 		for(int i = 0; i < tokens.length; i++){
+			if(!"0123456789+-*/".contains(tokens[i]))
+				throw new IllegalArgumentException("Apenas numeros e operadores");
+			
 			if (!"+-/*".contains(tokens[i])){
 				resultado.push(Double.parseDouble(tokens[i]));
 			}
