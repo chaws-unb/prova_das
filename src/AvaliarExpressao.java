@@ -29,6 +29,7 @@ public class AvaliarExpressao {
 		Stack<String> temporaria = new Stack();
 		String postfixo = "";
 		String charAtual = "";
+		int quantosInteiros = 0;
 		
 		for(int i = 0; i < pilha.size(); i++){
 			charAtual = pilha.get(i);
@@ -40,10 +41,17 @@ public class AvaliarExpressao {
 				temporaria.pop();
 			}
 			else if ("+-/*".contains(charAtual)){
+				if(quantosInteiros == 2)
+				{
+					postfixo += temporaria.pop() + " ";
+					quantosInteiros = 0;
+				}
 				temporaria.push(charAtual);
+				quantosInteiros = 0;
 			}
 			else {
 				postfixo += charAtual + " ";
+				quantosInteiros++;
 			}
 			
 			if (pilha.size() - 1 == i){
@@ -71,8 +79,8 @@ public class AvaliarExpressao {
 			}
 			else {
 				double numero1, numero2, result;
-				numero1 = resultado.pop();
 				numero2 = resultado.pop();
+				numero1 = resultado.pop();
 				if (tokens[i].equals("+")){
 					result = numero1 + numero2;
 					resultado.push(result);

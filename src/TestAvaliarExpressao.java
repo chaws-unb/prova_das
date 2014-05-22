@@ -42,6 +42,16 @@ public class TestAvaliarExpressao {
 		String postfixo = expressao1.converterPostFix();
 		assertEquals(2.0, expressao1.calcularExpressao(postfixo), 0.1);
 		
+		infixo = "( 2 - 2 ) / ( 1 + 1 )";
+		expressao1 = new AvaliarExpressao(infixo);
+		postfixo = expressao1.converterPostFix();
+		assertEquals(0.0, expressao1.calcularExpressao(postfixo), 0.1);
+		
+		infixo = "( 2 + 2 + 3 ) * ( 1 + 1 )";
+		expressao1 = new AvaliarExpressao(infixo);
+		postfixo = expressao1.converterPostFix();
+		assertEquals("2 2 + 3 + 1 1 + * ", postfixo);
+		assertEquals(14.0, expressao1.calcularExpressao(postfixo), 0.1);
 	}
 
 }
