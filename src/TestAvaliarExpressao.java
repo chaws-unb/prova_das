@@ -35,6 +35,7 @@ public class TestAvaliarExpressao {
 		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
 	}
 	
+	
 	@Test
 	public void testVerificarResultado(){
 		String infixo = "( 2 + 2 ) / ( 1 + 1 )";
@@ -47,11 +48,21 @@ public class TestAvaliarExpressao {
 		postfixo = expressao1.converterPostFix();
 		assertEquals(0.0, expressao1.calcularExpressao(postfixo), 0.1);
 		
-		infixo = "( 2 + 2 + 3 ) * ( 1 + 1 )";
-		expressao1 = new AvaliarExpressao(infixo);
-		postfixo = expressao1.converterPostFix();
-		assertEquals("2 2 + 3 + 1 1 + * ", postfixo);
-		assertEquals(14.0, expressao1.calcularExpressao(postfixo), 0.1);
 	}
 
+	@Test(expected=IllegalArgumentException.class)
+	public void testVerificarResultadoComExcecao() throws IllegalArgumentException{
+		String infixo = "( 2 + 2 ) / ( 1 + 1 )";
+		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
+		expressao1.calcularExpressao(infixo);
+				
+	}
+		
+	@Test(expected=ArithmeticException.class)
+	public void testValidarExpressaoDivisaoPorZero() throws ArithmeticException{
+		String infixo = "( 2 + 2 ) / ( 1 - 1 )";
+		AvaliarExpressao expressao1 = new AvaliarExpressao(infixo);
+		String postfixo = expressao1.converterPostFix();
+		expressao1.calcularExpressao(postfixo);
+	}
 }

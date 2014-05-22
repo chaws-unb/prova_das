@@ -41,14 +41,8 @@ public class AvaliarExpressao {
 				temporaria.pop();
 			}
 			else if ("+-/*".contains(charAtual)){
-				if(quantosInteiros == 2)
-				{
-					postfixo += temporaria.pop() + " ";
-					quantosInteiros = 0;
-				}
 				temporaria.push(charAtual);
-				quantosInteiros = 0;
-			}
+							}
 			else {
 				postfixo += charAtual + " ";
 				quantosInteiros++;
@@ -70,7 +64,7 @@ public class AvaliarExpressao {
 		
 	}
 
-	public double calcularExpressao(String postfixo) {
+	public double calcularExpressao(String postfixo) throws ArithmeticException {
 		Stack<Double> resultado = new Stack();
 		String[] tokens = postfixo.split(" ");
 		for(int i = 0; i < tokens.length; i++){
@@ -94,6 +88,8 @@ public class AvaliarExpressao {
 					resultado.push(result);
 				}
 				else if (tokens[i].equals("/")){
+					if(numero2 == 0)
+						throw new ArithmeticException("Divisor nao pode ser zero");
 					result = numero1 / numero2;
 					resultado.push(result);
 				}
